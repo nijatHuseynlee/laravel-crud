@@ -1,0 +1,20 @@
+{
+    "name": "nijat/laravel-crud",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Nijat\\LaravelCrud\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Nijat Huseynli <nijat.huseynlee@gmail.com>"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "illuminate/support": "^9|^10|^11",
+        "illuminate/http": "^11.3",
+        "illuminate/database": "^11.3"
+    }
+}
