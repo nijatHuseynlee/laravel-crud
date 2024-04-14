@@ -1,6 +1,8 @@
 {
     "name": "nijat/laravel-crud",
+    "description": "Automaticly crud operations for Laravel application.",
     "type": "library",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Nijat\\LaravelCrud\\": "src/"
