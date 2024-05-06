@@ -77,7 +77,7 @@ abstract class EloquentRepository implements EloquentRepositoryInterface
 
         //add custom filters
         foreach($customConditions as $key => $condition) {
-            $name = ucfirst($key);
+            $name = Str::studly($key);
             $method = "add".$name."Condition";
             if(method_exists($this, $method)) {
                 $this->{$method}($query, $condition);
@@ -97,7 +97,7 @@ abstract class EloquentRepository implements EloquentRepositoryInterface
 
             $direction = $customSorting == $attr ? 'ASC' : 'DESC';
 
-            $name = ucfirst($attr);
+            $name = Str::studly($attr);
             $method = "add".$name."Sorting";
             if(method_exists($this, $method)) {
                 $this->{$method}($query, $direction);
