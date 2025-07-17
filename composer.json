@@ -15,8 +15,8 @@
     ],
     "require": {
         "php": "^8.0",
-        "illuminate/support": "^9|^10|^11",
-        "illuminate/http": "^11.3",
-        "illuminate/database": "^11.3"
+        "illuminate/support": "^11|^12",
+        "illuminate/http": "^11.3|^12",
+        "illuminate/database": "^11.3|^12"
     }
 }
