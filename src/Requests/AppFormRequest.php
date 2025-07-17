@@ -252,17 +252,20 @@ abstract class AppFormRequest extends FormRequest
     {
         $sorting = $this->get('sort');
 
-        if(in_array($sorting, $this->customSortable())) {
+        $sortingColumn = ltrim( $sorting, '-');
+
+        if(in_array($sortingColumn, $this->customSortable())) {
             return null;
         }
 
-        if(!in_array($sorting, $this->sortable())) {
+        if(!in_array($sortingColumn, $this->sortable())) {
             return $this->sortBy;
         }
 
-        $direction = strtolower($this->get('direction'));
+        $direction = strtolower($this->get('direction'))
+            ?: ($sorting != $sortingColumn ? 'desc' : 'asc');
 
-        $attr = $direction == 'desc' ?  '-'.$sorting : $sorting; 
+        $attr = $direction == 'desc' ?  '-'.$sortingColumn : $sortingColumn;
 
         return $attr;
     }
