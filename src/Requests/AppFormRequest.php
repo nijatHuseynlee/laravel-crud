@@ -250,9 +250,9 @@ abstract class AppFormRequest extends FormRequest
      */
     final protected function autoSorting(): ?string
     {
-        $sorting = $this->get('sort');
+        $sorting = (string) $this->get('sort', '');
 
-        $sortingColumn = ltrim( $sorting, '-');
+        $sortingColumn = ltrim($sorting, '-');
 
         if(in_array($sortingColumn, $this->customSortable())) {
             return null;
@@ -262,7 +262,7 @@ abstract class AppFormRequest extends FormRequest
             return $this->sortBy;
         }
 
-        $direction = strtolower($this->get('direction'))
+        $direction = strtolower((string) $this->get('direction', ''))
             ?: ($sorting != $sortingColumn ? 'desc' : 'asc');
 
         $attr = $direction == 'desc' ?  '-'.$sortingColumn : $sortingColumn;
@@ -278,13 +278,13 @@ abstract class AppFormRequest extends FormRequest
      */
     final protected function customSorting(): ?string
     {
-        $sorting = $this->get('sort');
+        $sorting = (string) $this->get('sort', '');
 
         if(!in_array($sorting, $this->customSortable())) {
             return null;
         }
 
-        $direction = strtolower($this->get('direction'));
+        $direction = strtolower((string) $this->get('direction', ''));
 
         $attr = $direction == 'desc' ?  '-'.$sorting : $sorting; 
 
@@ -300,7 +300,7 @@ abstract class AppFormRequest extends FormRequest
      */
     final protected function expandable(): array
     {
-        $expand = $this->get('expand');
+        $expand = (string) $this->get('expand', '');
 
         return collect(explode(',', $expand))
                 ->map( fn($e) => trim($e))
@@ -318,7 +318,7 @@ abstract class AppFormRequest extends FormRequest
      */
     final protected function customExpandable(): array
     {
-        $expand = $this->get('expand');
+        $expand = (string) $this->get('expand', '');
 
         return collect(explode(',', $expand))
                 ->map( fn($e) => trim($e))
